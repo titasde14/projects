@@ -12,11 +12,6 @@ If you would like to understand the paper and see  how to implement it by your o
 Both code and blog received mention on original project homepage over [here](https://junyanz.github.io/CycleGAN/)
 
 
-### CycleGAN model
-
-CycleGAN model can be summarized in the following image. For full details about implementation and understanding CycleGAN you can read the tutorial at this [link](https://hardikbansal.github.io/CycleGANBlog/)
-
-
 <p align="center">
 <img src="images/model.jpg" alt="Model" width="80%" />
 </p>
