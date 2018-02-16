@@ -29,4 +29,4 @@ $ python main.py --content='png/content.png' --style='png/style.png'
 ## Results
 The following is the result of applying variaous styles of artwork to Anne Hathaway's photograph.
 
-![alt text](png/neural_style.png)
+![alt text](png/neural_style2.png)
