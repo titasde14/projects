@@ -2,8 +2,6 @@
 
 [Neural style transfer](https://arxiv.org/abs/1508.06576) is an algorithm that combines the content of one image with the style of another image using CNN. Given a content image and a style image, the goal is to generate a target image that minimizes the content difference with the content image and the style difference with the style image. 
 
-<p align="center"><img width="100%" src="png/neural_style2.png" /></p>
-
 
 #### Content loss
 
