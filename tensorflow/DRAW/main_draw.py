@@ -1,3 +1,6 @@
+# created by Titas De
+# some parts of code borrowed from other sources
+
 import tensorflow as tf
 import numpy as np
 import os

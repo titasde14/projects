@@ -1,3 +1,6 @@
+# created by Titas De
+# some parts of code borrowed from other sources
+
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import numpy as np

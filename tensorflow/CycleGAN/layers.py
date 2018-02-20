@@ -1,3 +1,6 @@
+# created by Titas De
+# some parts of code borrowed from other sources
+
 import tensorflow as tf
 
 def lrelu(x, leak=0.2, name="lrelu", alt_relu_impl=False):

@@ -1,3 +1,4 @@
+# created by Titas De
 # Basic Code is taken from https://github.com/ckmarkoh/GAN-tensorflow
 
 import tensorflow as tf

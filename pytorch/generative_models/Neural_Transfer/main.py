@@ -1,3 +1,6 @@
+# created by Titas De
+# some parts of code borrowed from other sources
+
 from __future__ import division
 from torch.backends import cudnn
 from torch.autograd import Variable

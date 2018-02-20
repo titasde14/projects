@@ -1,3 +1,6 @@
+# created by Titas De
+# some parts of code borrowed from other sources
+
 import numpy as np
 
 def flat_batch(input_batch, batch_size, final_width, final_height):
