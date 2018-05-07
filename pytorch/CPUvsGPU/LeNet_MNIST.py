@@ -11,9 +11,9 @@ from torch.autograd import Variable
 import torchvision
 #import mkl
 
-from ctypes import *
+# from ctypes import *
 # Load the share library
-mkl = cdll.LoadLibrary("libmkl_rt.so")
+# mkl = cdll.LoadLibrary("libmkl_rt.so")
 # mkl = cdll.LoadLibrary("/opt/intel/intelpython2/lib/libmkldnn.so")
 
 import copy
@@ -75,7 +75,9 @@ print(LeNet())
 print('\n\n')
 
 
-num_thread_array = [1,2,4,8,12,16,32]*5
+# num_thread_array = [1,2,4,8,12,16,32]*5
+num_thread_array = [1]
+
 thread_ctr = 0
 
 while thread_ctr<len(num_thread_array):
@@ -85,7 +87,7 @@ while thread_ctr<len(num_thread_array):
     print("torch num threads = ",torch.get_num_threads())
 
     #mkl.mkl_set_num_threads(byref(c_int(num_threads))) # try to set number of mkl threads
-    print("mkl get max thread = ", mkl.mkl_get_max_threads())
+    # print("mkl get max thread = ", mkl.mkl_get_max_threads())
 
     net = LeNet()
     # print(net)
@@ -103,7 +105,7 @@ while thread_ctr<len(num_thread_array):
 
 # Train the network
 
-    iterations = 10
+    iterations = 1000
     trainLoss = []
     testAcc = []
     start = time.time()
@@ -161,6 +163,7 @@ while thread_ctr<len(num_thread_array):
             # gc.collect()
 
         avgTestAcc = running_correct/10000.0
+        # print(avgTestAcc)
         testAcc.append(avgTestAcc)
         
         epochEnd = time.time()-epochStart
