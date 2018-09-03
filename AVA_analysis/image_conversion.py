@@ -1,3 +1,7 @@
+'''
+@author: Titas De
+'''
+
 import numpy as np
 import scipy as sp
 import cv2 as cv
