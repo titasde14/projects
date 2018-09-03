@@ -1,3 +1,7 @@
+'''
+@author: Titas De
+'''
+
 import numpy as np
 import scipy as sp
 import cv2 as cv
@@ -8,15 +12,15 @@ from os import path
 import pdb
 import gc
 
-N_size = 50
+N_size = 60
 
 def get_image(idx):
 	print(idx)
 	img = cv.imread(base_path+'images/images/'+str(idx)+'.jpg')
-	img_new = np.zeros((N_size,N_size,3))
-	img_new[:,:,0] = cv.resize(img[:,:,0],(N_size,N_size))
-	img_new[:,:,1] = cv.resize(img[:,:,1],(N_size,N_size))
-	img_new[:,:,2] = cv.resize(img[:,:,2],(N_size,N_size))
+	img_new = np.zeros((3,N_size,N_size))
+	img_new[0,:,:] = cv.resize(img[:,:,0],(N_size,N_size))
+	img_new[1,:,:] = cv.resize(img[:,:,1],(N_size,N_size))
+	img_new[2,:,:] = cv.resize(img[:,:,2],(N_size,N_size))
 	del img
 	gc.collect()
 	return img_new
@@ -67,7 +71,7 @@ for idx in existing_ids:
 	del img, img_new
 	gc.collect()
 '''
-np.save('all_images_'+str(N_size)+'x'+str(N_size)+'x3.npy',all_imgs)
+np.save('all_images_3x'+str(N_size)+'x'+str(N_size)+'x3.npy',all_imgs)
 pdb.set_trace()
 
 
