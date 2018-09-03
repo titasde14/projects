@@ -43,35 +43,16 @@ print(time.time()-tic)
 print(len(existing_ids))
 existing_ids = sorted([idx for idx in existing_ids if idx>-1])
 print(len(existing_ids))
+
 del all_ids
 gc.collect()
 np.save('existing_ids.npy',existing_ids)
-#pdb.set_trace()
+
 tic = time.time()
 all_imgs = np.array(Parallel(n_jobs=num_cores)(delayed(get_image)(i) for i in existing_ids))
 print(time.time()-tic)
-#pdb.set_trace()
-'''
-N_data = len(existing_ids)
-#N_size = 50
-all_imgs = np.zeros((N_data,N_size,N_size,3))
-ctr = -1
-for idx in existing_ids:
-	ctr += 1
-	print(ctr,idx)
-	file_name = base_path+'images/images/'+str(idx)+'.jpg'
-	img = cv.imread(file_name)
-	img_new = np.zeros((N_size,N_size,3))
-        #pdb.set_trace()
-	img_new[:,:,0] = cv.resize(img[:,:,0],(N_size,N_size))
-        img_new[:,:,1] = cv.resize(img[:,:,1],(N_size,N_size))
-        img_new[:,:,2] = cv.resize(img[:,:,2],(N_size,N_size))
-	#pdb.set_trace()
-	all_imgs[ctr,:,:,:] = img_new
-	del img, img_new
-	gc.collect()
-'''
-np.save('all_images_3x'+str(N_size)+'x'+str(N_size)+'x3.npy',all_imgs)
+
+np.save('all_images_3x'+str(N_size)+'x'+str(N_size)+'.npy',all_imgs)
 pdb.set_trace()
 
 

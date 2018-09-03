@@ -1,8 +1,6 @@
 '''
 @author: Titas De
 '''
-
-
 import numpy as np
 from os import path
 import pdb
@@ -16,9 +14,5 @@ for i in range(len(existing_ids)):
 lines = np.array([line.rstrip('\r\n').split(' ')[1:12] for line in open(base_path+'AVA.txt')]).astype(np.int32)
 ids_scores = np.array([lines[ids_dict[idx],:] for idx in existing_ids]).astype(np.int32)
 np.save('ids_scores.npy',ids_scores)
-#pdb.set_trace()
 
-#pdb.set_trace()
-
-	
 
