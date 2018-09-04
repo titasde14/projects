@@ -70,13 +70,13 @@ class CAEDataset(Dataset):
 
 
 # Hyperparameters
-num_epochs = 100
+num_epochs = 1000
 batch_size = 100
 
 # Load data
 data = np.load('all_data_3x60x60.npy')
-train_data = np.float64(data.item(0)['x_train'])/255.0 # converting from uint8 to float
-test_data  = np.float64(data.item(0)['x_test'])/255.0
+train_data = CAEDataset(np.float64(data.item(0)['x_train'])/255.0) # converting from uint8 to float64
+test_data  = CAEDataset(np.float64(data.item(0)['x_test'])/255.0)
 
 del data
 gc.collect()
@@ -89,10 +89,11 @@ loss_fn = nn.BCELoss().cuda()
 optimizer = optim.Adam(autoencoder.parameters(), lr=1e-3)
 
 # Training loop
+autoencoder.train(True)
 for epoch in range(num_epochs):
     print("Epoch %d" % epoch)
     
-    for i, images in enumerate(train_loader):   
+    for images in train_loader:   
         out, vec = autoencoder(Variable(images.float().cuda()))
         
         optimizer.zero_grad()
@@ -102,16 +103,18 @@ for epoch in range(num_epochs):
         
     print("Loss = %.3f" % loss.data[0])
 
-autoencoder.save_state_dict('AVA_trained.pt')
+autoencoder.save_state_dict('AVA_imgs_trained.pt')
 
 # saving the encoder vectors
-train_vec = np.zeros((train_data.shape[0],40))
-test_vec = np.zeros((test_data.shape[0],40))
+train_vec = np.zeros((train_data.size()[0],40))
+test_vec = np.zeros((test_data.size()[0],40))
 
-for i in range(len(train_data.shape[0])):
+autoencoder.train(False)
+autoencoder.zero_grad()
+for i in range(len(train_data.size()[0])):
     _,train_vec[i,:] = autoencoder(Variable(train_data[i,:,:,:].float().cuda())).numpy()
 
-for i in range(len(test_data.shape[0])):
+for i in range(len(test_data.size()[0])):
     _,test_vec[i,:] = autoencoder(Variable(test_data[i,:,:,:].float().cuda())).numpy()
 
 np.save('train&test_vec.npy',{'train_vec':train_vec,'test_vec':test_vec})
